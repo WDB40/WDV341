@@ -10,6 +10,8 @@
 
     echo "<h1>Wes Brown</h1>";
 
+    echo "Completing step 5 of GitHub homework.";
+
 ?>
 
 </body>
