@@ -56,6 +56,6 @@
                  $this->getSendToAddress(),
                  $this->getSubjectLine(),
                  $this->getMessageBody(),
-                 "From: " . $this->getSenderAddress()) . "\r\n";
+                 "From: " . $this->getSenderAddress() . "\r\n");
         }
     }
