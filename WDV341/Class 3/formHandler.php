@@ -19,35 +19,54 @@
 	$inFirstName = $_POST["firstName"];		//Get the value entered in the first name field
 	$inLastName = $_POST["lastName"];		//Get the value entered in the last name field
 	$inSchool = $_POST["school"];			//Get the value entered in the school field
-	
+    $schoolStatus = $_POST["schoolStatus"];
+    $receiveInfo = $_POST["receiveInfo"];
+    $mailingList = $_POST["mailingList"];
+    $contactMethod = $_POST["contactMethod"];
 
 ?>
 <!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>WDV 341 Intro PHP - Code Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WDV 341 Intro PHP - Code Example</title>
 </head>
 
 <body>
-<h1>WDV341 Intro PHP</h1>
-<h2>Form Handler Result Page - Code Example</h2>
-<p>This page displays the results of the Server side processing. </p>
-<p>The PHP page has been formatted to use the Model-View-Controller (MVC) concepts. </p>
-<h3>Display the values from the form using Method 1. Uses a loop to process through the $_POST array</h3>
-<p>
-	<table border='a'>
-    <tr>
-    	<th>Field Name</th>
-        <th>Value of Field</th>
-    </tr>
-	<?php echo $tableBody;  ?>
-	</table>
-</p>
-<h3>Display the values from the form using Method 2. Displays the individual values.</h3>
-<p>School: <?php echo $inSchool; ?></p>
-<p>First Name: <?php echo $inFirstName; ?></p>
-<p>Last Name: <?php echo $inLastName; ?></p>
+<header>
+    <h1>WDV341 Intro PHP</h1>
+    <h2>Form Handler Result Page - Code Example</h2>
+</header>
+<main>
+    <section>
+        <p>This page displays the results of the Server side processing.</p>
+        <p>The PHP page has been formatted to use the Model-View-Controller (MVC) concepts. </p>
+    </section>
 
+    <section>
+        <h3>Display the values from the form using Method 1. Uses a loop to process through the $_POST array</h3>
+        <p>
+            <table border='a'>
+            <tr>
+                <th>Field Name</th>
+                <th>Value of Field</th>
+            </tr>
+            <?php echo $tableBody;  ?>
+            </table>
+        </p>
+    </section>
 
+    <section>
+        <h3>Display the values from the form using Method 2. Displays the individual values.</h3>
+
+        <p>School: <?php echo $inSchool; ?></p>
+        <p>First Name: <?php echo $inFirstName; ?></p>
+        <p>Last Name: <?php echo $inLastName; ?></p>
+        <p>School Status: <?php echo $schoolStatus?></p>
+        <p>Receive School Info: <?php echo $receiveInfo?></p>
+        <p>Be on Our Mailing List: <?php echo $mailingList?></p>
+        <p>Preferred Contact Method: <?php echo $contactMethod?></p>
+    </section>
+</main>
 </body>
 </html>

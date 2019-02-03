@@ -1,34 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>WDV341 Intro PHP - Form Example</title>
 </head>
 
 <body>
-<h1>WDV341 Intro PHP</h1>
-<h2>WDV101 Intro HTML and CSS Chapter 9 - Creating Forms - Code Example</h2>
-<p><strong>Basic Form Handler</strong> - This process will display the 'name = value' pairs for all the elements of a form. This summary will on any number of form elements regardless of their name attribute value. </p>
-<p>Use <strong>basicFormExample.php</strong> in the action attribute of your form. </p>
-<p>Field '<strong>name</strong>' - The value of the name attribute from the HTML form element.</p>
-<p>Field <strong>'value</strong>' - The value entered in the field. This will vary depending upon the HTML form element.</p>
-<form id="form1" name="form1" method="post" action="formHandler.php">
-  <p>First Name: 
-    <input type="text" name="firstName" id="firstName" />
-</p>
-  <p>Last Name: 
-    <input type="text" name="lastName" id="lastName" />
-  </p>
-  <p>School: 
-    <input type="text" name="school" id="school" />
-  </p>
-  <p>
-    <input type="submit" name="button" id="button" value="Submit" />
-    <input type="reset" name="button2" id="button2" value="Reset" />
-  </p>
-</form>
 
-<p>&nbsp;</p>
+  <header>
+    <h1>WDV341 Intro PHP</h1>
+    <h2>WDV101 Intro HTML and CSS Chapter 9 - Creating Forms - Code Example</h2>
+  </header>
+
+  <main>
+    <section>
+      <p><strong>Basic Form Handler</strong> - This process will display the 'name = value' pairs for all the elements of a form. This summary will on any number of form elements regardless of their name attribute value. </p>
+      <p>Use <strong>basicFormExample.php</strong> in the action attribute of your form. </p>
+      <p>Field '<strong>name</strong>' - The value of the name attribute from the HTML form element.</p>
+      <p>Field <strong>'value</strong>' - The value entered in the field. This will vary depending upon the HTML form element.</p>
+    </section>
+
+    <section>
+
+      <form id="form1" name="form1" method="post" action="formHandler.php">
+        <p><label>
+          First Name:
+          <input type="text" name="firstName" id="firstName" />
+        </label></p>
+
+        <p><label>
+          Last Name:
+          <input type="text" name="lastName" id="lastName" />
+        </label></p>
+
+        <p><label>
+          School:
+          <input type="text" name="school" id="school" />
+        </label></p>
+
+        <p><label>
+          Status with School:<br>
+          <input type="radio" name="schoolStatus" value="Student" id="student" checked="checked">Student<br>
+          <input type="radio" name="schoolStatus" value="Graduate" id="graduate">Graduate<br>
+          <input type="radio" name="schoolStatus" value="Professor" id="professor">Professor
+        </label></p>
+
+        <p><label>
+          Would you like:<br>
+          <input type="checkbox" name="receiveInfo" value="Yes">Receive information on the school?<br>
+          <input type="hidden" name="receiveInfo" value="No">
+          <input type="checkbox" name="mailingList" value="Yes">Would you like to be on our mailing list?
+          <input type="hidden" name="mailingList" value="No">
+        </label></p>
+
+        <p><label>
+          What is your preferred contact method?<br>
+          <select name="contactMethod">
+            <option value="Email">Email</option>
+            <option value="Mail">Regular Mail</option>
+            <option value="Text">Text Alerts</option>
+          </select>
+        </label></p>
+
+        <p>
+          <input type="submit" name="button" id="button" value="Submit" />
+          <input type="reset" name="button2" id="button2" value="Reset" />
+        </p>
+
+      </form>
+    </section>
+
+  </main>
 </body>
 
 </html>
