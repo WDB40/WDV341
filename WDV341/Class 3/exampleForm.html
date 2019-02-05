@@ -38,6 +38,11 @@
           <input type="text" name="school" id="school" />
         </label></p>
 
+        <label id="schoolNumber">
+          School Number
+          <input type="text" name="schoolNumber">
+        </label>
+
         <p><label>
           Status with School:<br>
           <input type="radio" name="schoolStatus" value="Student" id="student" checked="checked">Student<br>
@@ -72,5 +77,9 @@
 
   </main>
 </body>
+
+<script>
+  document.getElementById("schoolNumber").style.display = "none";
+</script>
 
 </html>
