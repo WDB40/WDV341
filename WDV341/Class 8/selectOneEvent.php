@@ -30,6 +30,8 @@ if(isset($_GET["submit"])){
         $statement->execute();
         $event = $statement->fetch();
 
+        $statement->rowCount();
+
         $name = $event["event_name"];
         $description = $event["event_description"];
         $presenter = $event["event_presenter"];
