@@ -9,7 +9,7 @@
 
     require ("connectPDO.php");
 
-    $sqlCommand = "SELECT event_name, event_description, event_presenter, event_date, event_time 
+    $sqlCommand = "SELECT event_id, event_name, event_description, event_presenter, event_date, event_time 
                     FROM wdv341_event";
 
     $statement = $conn->prepare($sqlCommand);
@@ -39,6 +39,7 @@
         <th>Description</th>
         <th>Date</th>
         <th>Time</th>
+        <th>Delete</th>
     </tr>
 
     <?php foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $tableRow) {?>
@@ -48,6 +49,7 @@
             <td><?php echo $tableRow["event_description"] ?></td>
             <td><?php echo $tableRow["event_date"] ?></td>
             <td><?php echo $tableRow["event_time"] ?></td>
+            <td><a href="../Unit12/deleteEvent.php?deleteId=<?php echo $tableRow["event_id"]?>">Delete</td>
         </tr>
     <?php } ?>
 
