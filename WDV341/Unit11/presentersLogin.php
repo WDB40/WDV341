@@ -68,7 +68,7 @@ session_start();
 
 <h1>WDV341 Intro PHP</h1>
 
-<h2>Presenters Admin System Example</h2>
+<h2>Events Admin Page</h2>
 
 <h2><?php echo $message?></h2>
 
@@ -77,9 +77,9 @@ session_start();
 	{
 ?>
 		<h3>Presenters Administrator Options</h3>
-        <p><a href="presentersInsertForm.php">Input New Presenter</a></p>
-        <p><a href="presentersSelectView.php">List of Presenters</a></p>
-        <p><a href="presentersLogout.php">Logout of Presenters Admin System</a></p>
+        <p><a href="../Unit8/eventsForm.php">Add New Event</a></p>
+        <p><a href="../Unit9/selectEvents.php">See All Events</a></p>
+        <p><a href="presentersLogout.php">Logout</a></p>
         					
 <?php
 	}
