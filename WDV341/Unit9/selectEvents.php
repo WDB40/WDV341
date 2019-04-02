@@ -50,6 +50,7 @@
             <td><?php echo $tableRow["event_date"] ?></td>
             <td><?php echo $tableRow["event_time"] ?></td>
             <td><a href="../Unit12/deleteEvent.php?deleteId=<?php echo $tableRow["event_id"]?>">Delete</td>
+            <td><a href="../Unit8/eventsForm.php?recID=<?php echo $tableRow["event_id"]?>">Update</a></td>
         </tr>
     <?php } ?>
 

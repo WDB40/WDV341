@@ -11,6 +11,7 @@
     require ("connectPDO.php");
     require ("EventValidator.php");
 
+    $eventId = "";
     $eventName = "";
     $eventDescription = "";
     $eventPresenter = "";
@@ -61,10 +62,23 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
     }
 
     if($validEvent){
-        $sqlCommand = "INSERT INTO wdv341_event(event_name, event_description, event_presenter, event_date, event_time) 
+
+        if($_POST["eventId"] != ""){
+
+            $sqlCommand = "UPDATE wdv341_event
+                            SET event_name = :eventName, event_description = :eventDescription, event_presenter = :eventPresenter, event_date = :eventDate, event_time = :eventTime
+                            WHERE event_id = :event_id";
+
+            $statement = $conn->prepare($sqlCommand);
+            $statement->bindParam(":event_id", $_SESSION['recID']);
+        } else {
+            $sqlCommand = "INSERT INTO wdv341_event(event_name, event_description, event_presenter, event_date, event_time) 
                           VALUES(:eventName, :eventDescription, :eventPresenter, :eventDate, :eventTime)";
 
-        $statement = $conn->prepare($sqlCommand);
+            $statement = $conn->prepare($sqlCommand);
+        }
+
+
         $statement->bindParam(':eventName', $eventName);
         $statement->bindParam(':eventDescription', $eventDescription);
         $statement->bindParam(':eventPresenter', $eventPresenter);
@@ -74,16 +88,31 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
         try {
             $statement->execute();
 
-            $eventName = "";
-            $eventDescription = "";
-            $eventPresenter = "";
-            $eventDate = "";
-            $eventTime = "";
+            header('Location: ../Unit9/selectEvents.php');
         }
         catch (PDOException $exception){
             echo $exception->getMessage();
         }
     }
+} elseif (isset($_GET['recID'])) {
+
+    $eventId = $_GET["recID"];
+
+    $sqlCommand = "SELECT event_name, event_description, event_presenter, event_date, event_time 
+                          FROM wdv341_event 
+                          WHERE event_id = :event_id";
+
+    $statement = $conn->prepare($sqlCommand);
+    $statement->bindParam(":event_id", $_GET['recID']);
+    $statement->execute();
+
+    $event = $statement->fetch();
+
+    $eventName = $event["event_name"];
+    $eventDescription = $event["event_description"];
+    $eventPresenter = $event["event_presenter"];
+    $eventDate = $event["event_date"];
+    $eventTime = $event["event_time"];
 }
 
 ?>
@@ -99,6 +128,9 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
 <h1>Add an Event</h1>
 
 <form  method="post" action="eventsForm.php">
+
+    <input type="hidden" name="eventId" value="<?php echo $eventId?>">
+
     <table>
         <tr id="eventName">
             <th>Event Name:</th>
