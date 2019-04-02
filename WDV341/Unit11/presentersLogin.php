@@ -79,6 +79,7 @@ session_start();
 		<h3>Presenters Administrator Options</h3>
         <p><a href="../Unit8/eventsForm.php">Add New Event</a></p>
         <p><a href="../Unit9/selectEvents.php">See All Events</a></p>
+        <p><a href="../Unit9/selectOneEvent.php">Select An Event</a></p>
         <p><a href="presentersLogout.php">Logout</a></p>
         					
 <?php

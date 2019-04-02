@@ -1,5 +1,12 @@
 <?php
 
+    session_cache_limiter('none');
+    session_start();
+
+    if(!isset($_SESSION['validUser']) || $_SESSION['validUser'] != "yes"){
+        header('Location: ../Unit11/presentersLogin.php');
+    }
+
 //Insert the actual error messages
     require ("connectPDO.php");
     require ("EventValidator.php");

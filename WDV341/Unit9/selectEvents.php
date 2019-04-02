@@ -1,4 +1,12 @@
 <?php
+
+    session_cache_limiter('none');
+    session_start();
+
+    if(!isset($_SESSION['validUser']) || $_SESSION['validUser'] != "yes"){
+        header('Location: ../Unit11/presentersLogin.php');
+    }
+
     require ("connectPDO.php");
 
     $sqlCommand = "SELECT event_name, event_description, event_presenter, event_date, event_time 
