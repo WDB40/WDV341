@@ -26,15 +26,34 @@
 
     $validator = new EventValidator();
 
-if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
+if(isset($_POST['submitButton'])){
 
     $validEvent = true;
 
-    $eventName = $_POST["eventName"];
-    $eventDescription = $_POST["eventDescription"];
-    $eventPresenter = $_POST["eventPresenter"];
-    $eventDate = $_POST["eventDate"];
-    $eventTime = $_POST["eventTime"];
+    if(isset($_POST["eventId"])) {
+        $eventId = $_POST["eventId"];
+    }
+
+    if(isset($_POST["eventName"])){
+        $eventName = $_POST["eventName"];
+    }
+
+    if(isset($_POST["eventDescription"])){
+        $eventDescription = $_POST["eventDescription"];
+    }
+
+    if(isset($_POST["eventPresenter"])){
+        $eventPresenter = $_POST["eventPresenter"];
+    }
+
+    if(isset($_POST["eventDate"])){
+        $eventDate = $_POST["eventDate"];
+    }
+
+    if(isset($_POST["eventTime"])){
+        $eventTime = $_POST["eventTime"];
+    }
+
 
     if(!$validator->validateText($eventName)){
         $validEvent = false;
@@ -63,21 +82,20 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
 
     if($validEvent){
 
-        if($_POST["eventId"] != ""){
+        if($eventId != ""){
 
             $sqlCommand = "UPDATE wdv341_event
                             SET event_name = :eventName, event_description = :eventDescription, event_presenter = :eventPresenter, event_date = :eventDate, event_time = :eventTime
                             WHERE event_id = :event_id";
 
             $statement = $conn->prepare($sqlCommand);
-            $statement->bindParam(":event_id", $_SESSION['recID']);
+            $statement->bindParam(":event_id", $eventId);
         } else {
             $sqlCommand = "INSERT INTO wdv341_event(event_name, event_description, event_presenter, event_date, event_time) 
                           VALUES(:eventName, :eventDescription, :eventPresenter, :eventDate, :eventTime)";
 
             $statement = $conn->prepare($sqlCommand);
         }
-
 
         $statement->bindParam(':eventName', $eventName);
         $statement->bindParam(':eventDescription', $eventDescription);
@@ -86,8 +104,8 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
         $statement->bindParam(':eventTime', $eventTime);
 
         try {
-            $statement->execute();
 
+            $statement->execute();
             header('Location: ../Unit9/selectEvents.php');
         }
         catch (PDOException $exception){
@@ -103,7 +121,7 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
                           WHERE event_id = :event_id";
 
     $statement = $conn->prepare($sqlCommand);
-    $statement->bindParam(":event_id", $_GET['recID']);
+    $statement->bindParam(":event_id", $eventId);
     $statement->execute();
 
     $event = $statement->fetch();
@@ -129,7 +147,7 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
 
 <form  method="post" action="eventsForm.php">
 
-    <input type="hidden" name="eventId" value="<?php echo $eventId?>">
+    <input type="hidden" name="eventId" value="<?php echo $eventId ?>">
 
     <table>
         <tr id="eventName">
@@ -157,7 +175,7 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
         </tr>
 
         <tr id="eventDate">
-            <th>Event Date (YYYY/MM/DD)</th>
+            <th>Event Date (YYYY-MM-DD)</th>
             <td><input type="text" name="eventDate" value="<?php echo $eventDate ?>"></td>
             <td id="dateError"><?php echo $dateError ?></td>
         </tr>
@@ -169,7 +187,7 @@ if(isset($_POST['submitButton']) && $_POST['eventLength'] == ""){
         </tr>
     </table>
 
-    <input type="submit" name="submitButton" value="Add">
+    <input type="submit" name="submitButton" value="Submit">
 </form>
 
 </body>

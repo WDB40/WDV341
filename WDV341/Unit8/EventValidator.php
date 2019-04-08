@@ -34,15 +34,9 @@ class EventValidator
     public function validateDate($date){
         $validDate = true;
 
-        $sanitizedDate = filter_var($date, FILTER_SANITIZE_NUMBER_INT);
-
-
         if($this->isEmpty($date)){
             $validDate = false;
-        }else if(!filter_var($sanitizedDate, FILTER_VALIDATE_INT)){
-            $validDate = false;
-        }else if(strlen($sanitizedDate) != $this->DATE_LENGTH){
-            echo "By Length";
+        }else if(!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)){
             $validDate = false;
         }
 
