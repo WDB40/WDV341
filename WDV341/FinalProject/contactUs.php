@@ -69,6 +69,8 @@ if(isset($_POST["submit"])){
 
         $email->sendEmail();
 
+        header('Location: homepage.php');
+
     }
 
 }
