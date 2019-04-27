@@ -8,6 +8,7 @@ session_start();
  }
 
  require ("connectPDO.php");
+ require ("Emailer.php");
 
  $sqlCommand = "SELECT book_id, title, author_first_name, author_last_name 
                     FROM books";
@@ -17,7 +18,14 @@ session_start();
  try{
      $statement->execute();
  } catch (PDOException $exception){
-     echo $exception->getMessage();
+
+     $email = new Emailer();
+     $email->setSenderAddress("wes@wdb40.com");
+     $email->setSendToAddress("wbrown1640@gmail.com");
+     $email->setSubjectLine("View All Error");
+     $email->setMessageBody($exception->getMessage());
+     $email->sendEmail();
+     header("Location: homepage.php");
  }
 
 ?>

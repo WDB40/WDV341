@@ -8,6 +8,7 @@ if(!isset($_SESSION['validUser']) || $_SESSION['validUser'] != "yes"){
 
 require ("Book.php");
 require ("connectPDO.php");
+require ("Emailer.php");
 
 $book = new Book();
 
@@ -42,5 +43,13 @@ try{
     echo $selectedBook;
 
 } catch(PDOException $exception){
-    echo $exception->getMessage();
+
+    $email = new Emailer();
+    $email->setSenderAddress("wes@wdb40.com");
+    $email->setSendToAddress("wbrown1640@gmail.com");
+    $email->setSubjectLine("Getting Book Error");
+    $email->setMessageBody($exception->getMessage());
+    $email->sendEmail();
+    header("Location: homepage.php");
+
 }

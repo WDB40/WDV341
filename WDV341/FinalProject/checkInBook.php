@@ -8,6 +8,7 @@ if(!isset($_SESSION['validUser']) || $_SESSION['validUser'] != "yes"){
 
 require ("connectPDO.php");
 require ("BookValidator.php");
+require ("Emailer.php");
 
 $bookId = "";
 $title = "";
@@ -116,7 +117,14 @@ if(isset($_POST['submit'])){
             $statement->execute();
             header("Location: viewAllBooks.php");
         } catch(PDOException $exception){
-            echo $exception->getMessage();
+
+            $email = new Emailer();
+            $email->setSenderAddress("wes@wdb40.com");
+            $email->setSendToAddress("wbrown1640@gmail.com");
+            $email->setSubjectLine("Check In or Update Error");
+            $email->setMessageBody($exception->getMessage());
+            $email->sendEmail();
+            header("Location: homepage.php");
         }
     }
 } elseif (isset($_GET["bookId"])){

@@ -3,7 +3,9 @@
 session_cache_limiter('none');
 session_start();
 
-include "connectPDO.php";
+require ("connectPDO.php");
+require ("Emailer.php");
+
 
 $message = "";
 
@@ -28,7 +30,14 @@ if(isset($_SESSION['validUser']) && $_SESSION['validUser'] == "yes"){
 
             $query->execute();
         } catch(PDOException $exception){
-            echo "Error: " . $exception->getMessage();
+
+            $email = new Emailer();
+            $email->setSenderAddress("wes@wdb40.com");
+            $email->setSendToAddress("wbrown1640@gmail.com");
+            $email->setSubjectLine("Log In Error");
+            $email->setMessageBody($exception->getMessage());
+            $email->sendEmail();
+            header("Location: homepage.php");
         }
 
         if($query->rowCount() == 1){

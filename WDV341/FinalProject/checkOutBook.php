@@ -7,6 +7,7 @@ if(!isset($_SESSION['validUser']) || $_SESSION['validUser'] != "yes"){
 }
 
 require ("connectPDO.php");
+require ("Emailer.php");
 
 $sqlCommand = "DELETE FROM books 
                 WHERE book_id = :bookId";
@@ -27,7 +28,15 @@ try{
     $statement->execute();
     header("Location: viewAllBooks.php");
 } catch (PDOException $exception){
-    echo $exception->getMessage();
+
+    $email = new Emailer();
+    $email->setSenderAddress("wes@wdb40.com");
+    $email->setSendToAddress("wbrown1640@gmail.com");
+    $email->setSubjectLine("Check Out Error");
+    $email->setMessageBody($exception->getMessage());
+    $email->sendEmail();
+    header("Location: homepage.php");
+
 }
 
 ?>
