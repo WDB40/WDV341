@@ -78,13 +78,15 @@ if(isset($_SESSION['validUser']) && $_SESSION['validUser'] == "yes"){
     <h3>Enter Login Information</h3>
 
     <form method="post" name="loginForm" action="homepage.php">
-        <label for="username">Username: </label>
-        <input name="username" id="username" type="text">
-        <br>
+        <p>
+            <label for="username">Username: </label>
+            <input name="username" id="username" type="text">
+        </p>
 
-        <label for="password">Password: </label>
-        <input name="password" id="password" type="password">
-        <br>
+        <p>
+            <label for="password">Password: </label>
+            <input name="password" id="password" type="password">
+        </p>
 
         <input name="login" value="Login" type="submit">
     </form>
