@@ -158,6 +158,7 @@ if(isset($_POST['submit'])){
     <a href="homepage.php">Home</a>
     <a href="checkInBook.php">Check In</a>
     <a href="viewAllBooks.php">View All</a>
+    <a href="contactUs.php">Contact Us</a>
     <a href="logout.php">Logout</a>
 </nav>
 
