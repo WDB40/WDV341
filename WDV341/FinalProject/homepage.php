@@ -82,6 +82,7 @@ if(isset($_SESSION['validUser']) && $_SESSION['validUser'] == "yes"){
 
     <h3>Logged In</h3>
     <p>Welcome to the Library.</p>
+    <p><a href="fakeErrorHandling.php">Test the Error Handling</a></p>
 
 <?php } else { ?>
 
